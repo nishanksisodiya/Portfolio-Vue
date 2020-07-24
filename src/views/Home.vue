@@ -1,13 +1,24 @@
 <template>
-  <div class="home" @wheel="animate">
+  <div class="home" @wheel="navigate">
     <div class="left">
-      <p class="name-title mask">Nishank Singh<br>Sisodiya</p>
+      <p class="name-title mask mb-n16">
+        Nishank Singh<br>Sisodiya<span class="brxsmall"/>
+        <i class="mt-n16" style="font-size: 2vmin">A CS Graduate with a passion for UI Designing</i>
+      </p>
     </div>
     <div class="right">
-      <p class="name-title">Nishank Singh<br>Sisodiya</p>
+      <p class="name-title mb-n16">
+        Nishank Singh<br>Sisodiya<span class="brxsmall"/>
+        <i class="mt-n16" style="font-size: 2vmin">A CS Graduate with a passion for UI Designing</i>
+      </p>
     </div>
     <div class="scroll-down-icon">
-      <v-icon light large class="scroll-down-icon">mdi-chevron-double-down</v-icon>
+      <v-icon light>mdi-chevron-double-down</v-icon>
+    </div>
+    <div class="contact-me-btn">
+      <v-btn text class="justify-end ml-5 mt-5" light href="mailto: nishanksisodiy@gmail.com" color="white">
+        Contact me
+      </v-btn>
     </div>
   </div>
 </template>
@@ -19,7 +30,7 @@ import Intro from './Intro'
 export default {
   name: 'Home',
   methods: {
-    animate (event) {
+    navigate (event) {
       if (event.deltaY > 0) {
         anime({
           targets: '.name-title',
@@ -31,12 +42,22 @@ export default {
           targets: '.left',
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
           easing: 'easeOutQuad',
-          duration: 1500
+          duration: 750
         }).finished.then(() => {
           this.$router.push(Intro)
         })
       }
     }
+  },
+  mounted () {
+    anime({
+      targets: '.scroll-down-icon',
+      translateY: [-5, 0],
+      duration: 1000,
+      easing: 'linear',
+      direction: 'alternate',
+      loop: true
+    })
   }
 }
 </script>
@@ -86,12 +107,29 @@ export default {
     color: transparent;
   }
 
-  .scroll-down-icon {
+  .brxsmall {
+    display: block;
+    margin-bottom: -.5em;
+  }
+
+  .contact-me-btn {
     position: absolute;
-    width: 100%;
-    bottom: 10px;
+    max-width: 100%;
+    top: 0;
     display: flex;
     justify-content: center;
     align-content: center;
+    z-index: 10;
+  }
+
+  .reveal {
+    transition: transform .3s;
+    width: 0;
+    transform: scale(0);
+  }
+
+  .reveal-hover {
+    width: auto;
+    transform: scale(1);
   }
 </style>
