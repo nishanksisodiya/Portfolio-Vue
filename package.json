@@ -11,10 +11,10 @@
   "dependencies": {
     "animejs": "^3.2.0",
     "core-js": "^3.6.5",
+    "gsap": "^3.4.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vue2-touch-events": "^2.2.1",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.3.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
